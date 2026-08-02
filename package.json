@@ -1,7 +1,7 @@
 {
   "name": "ELK-JS",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lightweight Node.js tool to control generic ELK-BLEDOM Bluetooth LED strips directly from your laptop.",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx src/index.ts",
@@ -10,8 +10,7 @@
     "typecheck": "tsc --noEmit",
     "start": "node dist/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Malick Tammal",
   "license": "MIT",
   "devEngines": {
     "packageManager": {
