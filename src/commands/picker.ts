@@ -4,14 +4,19 @@ import { promisify } from "node:util";
 import { hex2rgb } from "../utils/colorConverter.js";
 import { setColor } from "../protocol/frames.js";
 import { log } from "../log.js";
+import { config } from "../config.js";
 
 const execPromise = promisify(exec);
 
 const picker = async (): Promise<string | null> => {
   try {
-    const { stdout } = await execPromise("hyprpicker");
-    const trimmed = stdout.trim();
-    return trimmed || null;
+    if ((config.picker = "hyprpicker")) {
+      const { stdout } = await execPromise("hyprpicker");
+      const trimmed = stdout.trim();
+      return trimmed || null;
+    } else {
+      return "Unknown picker";
+    }
   } catch {
     return null;
   }

@@ -20,4 +20,5 @@ export const config = {
   daemonLogFile: "/tmp/ELK-JS.log",
   daemonStartTimeoutMs: 10000,
   daemonRequestTimeoutMs: 10000,
+  picker: "hyprpicker",
 };
