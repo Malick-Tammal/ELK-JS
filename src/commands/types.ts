@@ -5,7 +5,7 @@ import {
   type SearchOptions,
 } from "../ble/discovery.js";
 
-export interface CommandContext {
+interface CommandContext {
   openConnection(): Promise<Connection>;
   search(
     onSeen: (device: DeviceInfo, change: DeviceChange) => void,
@@ -15,10 +15,18 @@ export interface CommandContext {
   daemonRequest(cmd: string, args?: unknown): Promise<unknown>;
 }
 
-export interface Command<TArgs = void> {
+interface Command<TArgs = void> {
   readonly name: string;
   readonly usage: string;
   readonly description: string;
   parse(argv: string[]): TArgs;
   run(ctx: CommandContext, args: TArgs): Promise<void>;
 }
+
+interface RGB {
+  r: number;
+  g: number;
+  b: number;
+}
+
+export type { Command, CommandContext, RGB };

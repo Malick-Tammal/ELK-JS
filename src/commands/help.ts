@@ -3,7 +3,7 @@ import { log } from "../log.js";
 import { commands } from "./registry.js";
 import { type Command } from "./types.js";
 
-export function printUsage(): void {
+function printUsage(): void {
   log.heading("ELK-BLEDOM LED strip controller");
   log.blank();
   log.info("Usage: pnpm dev <command> [args]");
@@ -16,7 +16,7 @@ export function printUsage(): void {
   }
 }
 
-export const helpCommand: Command = {
+const helpCommand: Command = {
   name: "help",
   usage: "help",
   description: "Print this help message.",
@@ -25,3 +25,5 @@ export const helpCommand: Command = {
     printUsage();
   },
 };
+
+export { helpCommand, printUsage };

@@ -14,7 +14,7 @@ function parseBrightness(argv: string[]): number {
   return value;
 }
 
-export const brightnessCommand: Command<number> = {
+const brightnessCommand: Command<number> = {
   name: "brightness",
   usage: "brightness <0-100>",
   description: "Set the LED strip brightness (0-100).",
@@ -26,3 +26,5 @@ export const brightnessCommand: Command<number> = {
     );
   },
 };
+
+export default brightnessCommand;

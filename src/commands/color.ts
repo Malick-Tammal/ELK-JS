@@ -1,26 +1,11 @@
-import { log } from "../log.js";
+import type { Command, RGB } from "./types.js";
+import { hex2rgb, rgb2hex } from "../utils/colorConverter.js";
 import { setColor } from "../protocol/frames.js";
-import { type Command } from "./types.js";
+import { log } from "../log.js";
 
-interface ColorArgs {
-  r: number;
-  g: number;
-  b: number;
-}
-
-function parseColor(argv: string[]): ColorArgs {
+const parseColor = (argv: string[]): RGB | null => {
   if (argv.length === 1) {
-    const hex = argv[0]!.trim().replace(/^#/, "");
-    const match = /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/.exec(
-      hex,
-    );
-    if (match) {
-      return {
-        r: parseInt(match[1]!, 16),
-        g: parseInt(match[2]!, 16),
-        b: parseInt(match[3]!, 16),
-      };
-    }
+    return hex2rgb(argv[0]!);
   }
 
   if (argv.length === 3 && argv.every((arg) => /^\d{1,3}$/.test(arg))) {
@@ -30,18 +15,30 @@ function parseColor(argv: string[]): ColorArgs {
     }
   }
 
-  throw new Error(
-    'Invalid color. Expected "color 255 0 128" (0-255) or "color #ff0080".',
-  );
-}
+  return null;
+};
 
-export const colorCommand: Command<ColorArgs> = {
+const colorCommand: Command<RGB | null> = {
   name: "color",
   usage: "color <r g b | #hex>",
   description: "Set the LED strip color (RGB 0-255 or hex).",
-  parse: parseColor,
+  parse: (argv: string[]) => parseColor(argv),
   run: async (ctx, args) => {
-    await ctx.writeFrame(setColor(args.r, args.g, args.b));
-    log.color("Color set to", [args.r, args.g, args.b]);
+    const rgb = args;
+
+    if (!rgb) {
+      log.error(
+        'Invalid color format. Expected "color 255 0 128" or "color #ff0080".',
+      );
+      return;
+    }
+
+    const hex = rgb2hex(rgb.r, rgb.g, rgb.b);
+
+    log.success(`HEX: ${hex!}`);
+    log.success(`RGB: rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+    ctx.writeFrame(setColor(rgb.r, rgb.g, rgb.b));
   },
 };
+
+export default colorCommand;

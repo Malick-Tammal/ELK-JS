@@ -78,7 +78,9 @@ async function main(): Promise<void> {
     const args = command.parse(argv.slice(argv.indexOf(commandName) + 1));
     await command.run(buildContext(), args);
   } catch (error) {
-    log.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    log.error(
+      `Error: ${error instanceof Error ? error.message : String(error)}`,
+    );
     log.blank();
     printCommandUsage(command);
     process.exitCode = 1;

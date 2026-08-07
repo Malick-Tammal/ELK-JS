@@ -8,7 +8,12 @@
     "dev:watch": "tsx watch src/index.ts",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "color": "pnpm dev color",
+    "brightness": "pnpm dev brightness",
+    "on": "pnpm dev on",
+    "off": "pnpm dev off",
+    "picker": "pnpm dev picker"
   },
   "author": "Malick Tammal",
   "license": "MIT",
