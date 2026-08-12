@@ -203,6 +203,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  ELK-JS: 'link:'
+
 importers:
 
   .:

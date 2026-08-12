@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { setMaxListeners } from "node:events";
 import { config } from "./config.js";
 import { openConnection } from "./ble/connection.js";

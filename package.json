@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "description": "A lightweight Node.js tool to control generic ELK-BLEDOM Bluetooth LED strips directly from your laptop.",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "elk-js": "./dist/index.js"
+  },
   "scripts": {
     "dev": "tsx src/index.ts",
     "dev:watch": "tsx watch src/index.ts",
+    "prepare": "tsc",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "start": "node dist/index.js",
@@ -13,7 +20,11 @@
     "brightness": "pnpm dev brightness",
     "on": "pnpm dev on",
     "off": "pnpm dev off",
-    "picker": "pnpm dev picker"
+    "picker": "pnpm dev picker",
+    "daemon": "pnpm dev daemon",
+    "daemon:start": "pnpm dev daemon start",
+    "daemon:stop": "pnpm dev daemon stop",
+    "daemon:status": "pnpm dev daemon status"
   },
   "author": "Malick Tammal",
   "license": "MIT",

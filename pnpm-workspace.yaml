@@ -1,3 +1,5 @@
 allowBuilds:
   esbuild: true
   usocket: true
+overrides:
+  ELK-JS: 'link:'
