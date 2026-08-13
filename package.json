@@ -18,6 +18,8 @@
     "start": "node dist/index.js",
     "color": "pnpm dev color",
     "brightness": "pnpm dev brightness",
+    "mode": "pnpm dev mode",
+    "speed": "pnpm dev speed",
     "on": "pnpm dev on",
     "off": "pnpm dev off",
     "picker": "pnpm dev picker",

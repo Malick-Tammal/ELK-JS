@@ -15,22 +15,21 @@ export function powerOff(): number[] {
   return [0x7e, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0xef];
 }
 
-// Gamma-corrected, with this strip's R/G channel order swap.
 export function setColor(r: number, g: number, b: number): number[] {
-  return [
-    0x7e,
-    0x00,
-    0x05,
-    0x03,
-    gamma(g),
-    gamma(r),
-    gamma(b),
-    0x00,
-    0xef,
-  ];
+  return [0x7e, 0x00, 0x05, 0x03, gamma(g), gamma(r), gamma(b), 0x00, 0xef];
 }
 
 export function setBrightness(level: number): number[] {
   const value = Math.min(100, Math.max(0, Math.round(level)));
   return [0x7e, 0x00, 0x01, value, 0x00, 0x00, 0x00, 0x00, 0xef];
+}
+
+export function setMode(modeId: number): number[] {
+  const m = Math.min(255, Math.max(0, Math.round(modeId)));
+  return [0x7e, 0x00, 0x03, m, 0x03, 0x00, 0x00, 0x00, 0xef];
+}
+
+export function setSpeed(speed: number): number[] {
+  const s = Math.min(100, Math.max(0, Math.round(speed)));
+  return [0x7e, 0x00, 0x02, s, 0x00, 0x00, 0x00, 0x00, 0xef];
 }

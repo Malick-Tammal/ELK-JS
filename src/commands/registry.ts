@@ -9,6 +9,8 @@ import { scanCommand } from "./scan.js";
 import { helpCommand } from "./help.js";
 import pickerCommand from "./picker.js";
 import { type Command } from "./types.js";
+import modeCommand from "./mode.js";
+import speedCommand from "./speed.js";
 
 export const commands: readonly Command<any>[] = [
   connectCommand,
@@ -16,6 +18,8 @@ export const commands: readonly Command<any>[] = [
   offCommand,
   colorCommand,
   brightnessCommand,
+  modeCommand,
+  speedCommand,
   scanCommand,
   resetCommand,
   daemonCommand,
